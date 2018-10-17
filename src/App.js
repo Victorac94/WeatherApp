@@ -37,7 +37,7 @@ class App extends Component {
             });
             console.log(response);
         })
-        .catch(error => alert(error.message));
+        .catch(error => alert(error.message)); 
       }, error => {
         //If an error ocurred when getting geolocation
         alert(error.message);
