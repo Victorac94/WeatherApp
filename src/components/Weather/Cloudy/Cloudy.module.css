@@ -1,0 +1,35 @@
+.cloudy {
+  width: 60px;
+  right: 0;
+  animation: cloudyFront 4s infinite;
+}
+
+.cloudy1 {
+  width: 36px;
+  right: 40px;
+  animation: cloudyBack 4s infinite;
+}
+
+@keyframes cloudyFront {
+  0% {
+    right: 0;
+  }
+  50% {
+    right: 10px;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes cloudyBack {
+  0% {
+    right: 30px;
+  }
+  50% {
+    right: 20px;
+  }
+  100% {
+    right: 30px;
+  }
+}
