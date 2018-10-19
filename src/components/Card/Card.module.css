@@ -47,19 +47,10 @@ p {
 
 .card__animatedIcon img {
   position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 92px;
 }
-
-/* .card__animatedIcon img:first-child {
-  width: 60px;
-  right: 0;
-  animation: cloudyFront 8s infinite;
-}
-
-.card__animatedIcon img:last-child {
-  width: 36px;
-  right: 40px;
-  animation: cloudyBack 8s infinite;
-} */
 
 .card__day {
   grid-area: card-day;
@@ -82,27 +73,3 @@ p {
     "location          animated-icon"
     "current-weather   card-day";
 }
-/*
-@keyframes cloudyFront {
-  0% {
-    right: 0;
-  }
-  50% {
-    right: 10px;
-  }
-  100% {
-    right: 0;
-  }
-}
-
-@keyframes cloudyBack {
-  0% {
-    right: 30px;
-  }
-  50% {
-    right: 20px;
-  }
-  100% {
-    right: 30px;
-  }
-} */
