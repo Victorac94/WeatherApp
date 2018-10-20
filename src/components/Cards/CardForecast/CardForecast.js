@@ -4,6 +4,16 @@ import classes from './CardForecast.module.css';
 import '../Cards.css';
 
 const cardForecast = (props) => {
+  let oldDate = null;
+  let date = [];
+  //The 'date_epoch' we get from the API is in seconds so we need to
+  //multiply it by 1000 to use it with new Date()
+  oldDate = new Date(props.myForecast.date_epoch * 1000).toDateString();
+  oldDate = oldDate.split(" "); //Get the string date and transform it into an array
+  date.push(oldDate.slice(0, 1)); //Get the day of the week
+  date.push(oldDate.slice(2, 3)); //Get the day of the month
+  date = date.join(" ");
+
   return (
     <section className={classes.card + " card"}>
       <div className={classes.card__location}>
@@ -11,17 +21,26 @@ const cardForecast = (props) => {
         <p>{props.myLocation.country}</p>
       </div>
       <div className={classes.card__currentWeather}>
-        <p>
+        <p className={classes.card__currentWeather__avgTemp}>
           {props.myForecast.day.avgtemp_c.toFixed(0)}<span>º</span>
         </p>
         <i className="icon-right-thin"></i>
-        <span>{props.myForecast.day.condition.text}</span>
+        <div className={classes.card__currentWeather__maxMin}>
+          <div className={classes.card__currentWeather__maxMin__max}>
+            <span>{props.myForecast.day.maxtemp_c.toFixed(0)}º</span>
+            <span>MAX</span>
+          </div>
+          <div className={classes.card__currentWeather__maxMin__min}>
+            <span>{props.myForecast.day.mintemp_c.toFixed(0)}º</span>
+            <span>MIN</span>
+          </div>
+        </div>
       </div>
-      <div className={classes.card__animatedIcon}>
+      <div className={classes.card__weatherIcon}>
         <img src={props.myForecast.day.condition.icon} alt={props.myForecast.day.condition.text}/>
       </div>
       <div className={classes.card__day}>
-        <p>{props.myForecast.date}</p>
+        <p>{date}</p>
       </div>
     </section>
   );

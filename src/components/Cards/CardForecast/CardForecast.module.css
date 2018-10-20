@@ -25,27 +25,61 @@ p {
   position: relative;
 }
 
-.card__currentWeather p {
+.card__currentWeather__avgTemp {
   display: inline-block;
   position: relative;
   font-family: 'Roboto', sans-serif;
   font-size: 26px;
 }
 
-.card__currentWeather p span {
+.card__currentWeather__avgTemp span {
   position: absolute;
   top: 0;
   font-size: 18px;
 }
 
-.card__animatedIcon {
+.card__currentWeather__maxMin,
+.card__currentWeather__maxMin__max,
+.card__currentWeather__maxMin__min {
+  display: inline-block;
+}
+
+.card__currentWeather__maxMin {
+  position: relative;
+  bottom: -3px;
+}
+
+.card__currentWeather__maxMin__max,
+.card__currentWeather__maxMin__min {
+  margin-right: 10px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+
+.card__currentWeather__maxMin__max span:last-child,
+.card__currentWeather__maxMin__min span:last-child {
+  display: block;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.card__currentWeather__maxMin__max span:last-child {
+  color: #D1515E;
+}
+
+.card__currentWeather__maxMin__min span:last-child {
+  color: #516FD1;
+}
+
+.card__weatherIcon {
   grid-area: animated-icon;
   justify-self: flex-end;
   align-self: flex-start;
   position: relative;
 }
 
-.card__animatedIcon img {
+.card__weatherIcon img {
   position: absolute;
   top: -18px;
   right: -18px;
