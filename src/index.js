@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -14,15 +14,11 @@ import watchWeather from './store/sagas/index.js';
 // process.env hace referencia a las variables de entorno de React
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const rootReducer = combineReducers({
-  weather: weatherReducer
-});
-
 //Creamos el Saga Middleware
 const sagaMiddleware = createSagaMiddleware();
 
 //Añadimos el Saga Middleware al store
-const store = createStore(rootReducer, composeEnhancers(
+const store = createStore(weatherReducer, composeEnhancers(
   applyMiddleware(sagaMiddleware)
 ));
 

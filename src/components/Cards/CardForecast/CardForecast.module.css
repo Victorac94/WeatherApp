@@ -1,0 +1,69 @@
+p {
+  margin: 0;
+}
+
+.card__location {
+  grid-area: location;
+  font-weight: normal;
+}
+
+.card__location p:first-child {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.card__location p:last-child {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.card__currentWeather {
+  grid-area: current-weather;
+  display: inline-block;
+  align-self: flex-end;
+  position: relative;
+}
+
+.card__currentWeather p {
+  display: inline-block;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 26px;
+}
+
+.card__currentWeather p span {
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+}
+
+.card__animatedIcon {
+  grid-area: animated-icon;
+  justify-self: flex-end;
+  align-self: flex-start;
+  position: relative;
+}
+
+.card__animatedIcon img {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 92px;
+}
+
+.card__day {
+  grid-area: card-day;
+  justify-self: flex-end;
+  align-self: flex-end;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+}
+
+.card {
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "location          animated-icon"
+    "current-weather   card-day";
+}
