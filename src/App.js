@@ -13,6 +13,21 @@ class App extends Component {
     showLastCards: false
   }
 
+  toggleSearchBar = () => {
+    const searchBox = document.querySelector(".searchBox");
+    const searchBoxInput = document.querySelector(".searchBox input");
+    searchBox.classList.toggle("searchBoxShow");
+    searchBoxInput.classList.toggle("searchBoxShowInputPadding");
+    searchBoxInput.focus();
+  }
+
+  searchCity = (e) => {
+    e.preventDefault();
+    const search = document.querySelector(".searchBox input");
+    console.log(search.value);
+    this.props.onFetchCityWeather(search.value);
+  }
+
   showMoreDays = () => {
     this.setState({showLastCards: true});
   }
@@ -54,7 +69,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h2>Weather</h2>
+        <header className="appHeader">
+          <h2>Weather</h2>
+          <form className="searchBox" onSubmit={(e) => this.searchCity(e)}>
+            <input type="text" placeholder="Search your city..." />
+            <span className="searchBox__icon icon-search" onClick={() => this.toggleSearchBar()}></span>
+          </form>
+        </header>
         {cards}
         {this.state.showLastCards ? lastCards : null}
         {this.props.myState.current && !this.state.showLastCards ?
@@ -73,7 +94,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchWeather: () => dispatch(action.fetchWeather())
+    onFetchWeather: () => dispatch(action.fetchWeather()),
+    onFetchCityWeather: (city) => dispatch(action.fetchCityWeather(city))
   }
 }
 

@@ -12,3 +12,17 @@ export const fetchWeatherSucceed = (data) => {
     data: data
   }
 }
+
+export const fetchCityWeather = (city) => {
+  return {
+    type: actionTypes.FETCH_CITY_WEATHER,
+    city: city
+  }
+}
+
+export const fetchCityWeatherSucceed = (data) => {
+  return {
+    type: actionTypes.FETCH_CITY_WEATHER_SUCCEED,
+    data: data
+  }
+}

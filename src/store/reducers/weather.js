@@ -7,6 +7,7 @@ const initialState = {
   location: null
 }
 
+//This function will handle default fetchWeather and city searched weather
 const fetchWeatherSucceed = (state, action) => {
   const data = action.data;
   const current = {...data.current};
@@ -20,6 +21,7 @@ const fetchWeatherSucceed = (state, action) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_WEATHER_SUCCEED: return fetchWeatherSucceed(state, action);
+    case actionTypes.FETCH_CITY_WEATHER_SUCCEED: return fetchWeatherSucceed(state, action);
     default:
       return state;
   }
