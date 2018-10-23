@@ -12,7 +12,7 @@ const cardCurrent = (props) => {
       </div>
       <div className={classes.card__currentWeather}>
         <p>
-          {props.myCurrent.temp_c}<span>º</span>
+          {props.isCelsiusActive ? props.myCurrent.temp_c : props.myCurrent.temp_f}<span>º</span>
         </p>
         <i className="icon-right-thin"></i>
         <span>{props.myCurrent.condition.text}</span>

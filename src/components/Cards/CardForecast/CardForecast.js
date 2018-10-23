@@ -22,16 +22,23 @@ const cardForecast = (props) => {
       </div>
       <div className={classes.card__currentWeather}>
         <p className={classes.card__currentWeather__avgTemp}>
-          {props.myForecast.day.avgtemp_c.toFixed(0)}<span>º</span>
+          {props.isCelsiusActive ? props.myForecast.day.avgtemp_c.toFixed(0) : props.myForecast.day.avgtemp_f.toFixed(0)}
+          <span>º</span>
         </p>
         <i className="icon-right-thin"></i>
         <div className={classes.card__currentWeather__maxMin}>
           <div className={classes.card__currentWeather__maxMin__max}>
-            <span>{props.myForecast.day.maxtemp_c.toFixed(0)}º</span>
+            <span>
+              {props.isCelsiusActive ? props.myForecast.day.maxtemp_c.toFixed(0) : props.myForecast.day.maxtemp_f.toFixed(0)}
+              º
+            </span>
             <span>MAX</span>
           </div>
           <div className={classes.card__currentWeather__maxMin__min}>
-            <span>{props.myForecast.day.mintemp_c.toFixed(0)}º</span>
+            <span>
+              {props.isCelsiusActive ? props.myForecast.day.mintemp_c.toFixed(0) : props.myForecast.day.mintemp_f.toFixed(0)}
+              º
+            </span>
             <span>MIN</span>
           </div>
         </div>

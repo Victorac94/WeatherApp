@@ -10,22 +10,59 @@ import * as action from './store/actions/fetchWeather';
 class App extends Component {
 
   state =  {
-    showLastCards: false
+    showLastCards: false,
+    isCelsiusActive: true
   }
 
   toggleSearchBar = () => {
     const searchBox = document.querySelector(".searchBox");
     const searchBoxInput = document.querySelector(".searchBox input");
-    searchBox.classList.toggle("searchBoxShow");
-    searchBoxInput.classList.toggle("searchBoxShowInputPadding");
-    searchBoxInput.focus();
+    //Hide the searchBox
+    if (searchBox.classList.contains("searchBoxShow")) {
+      searchBox.classList.remove("searchBoxShow");
+      searchBoxInput.classList.remove("searchBoxShowInputPadding");
+    } 
+    //Show the searchBox
+    else {
+      searchBox.classList.add("searchBoxShow");
+      searchBoxInput.classList.add("searchBoxShowInputPadding");
+      searchBoxInput.focus();
+    }
   }
 
-  searchCity = (e) => {
+  searchCity = e => {
     e.preventDefault();
     const search = document.querySelector(".searchBox input");
     console.log(search.value);
     this.props.onFetchCityWeather(search.value);
+  }
+
+  activateCelsius = () => {
+    const degreesContainer = document.querySelector(".degreeUnits");
+    const cel = degreesContainer.firstElementChild;
+    const fah = degreesContainer.lastElementChild;
+
+    if (cel.classList.contains("degreeUnits__active")) return;
+    else {
+      cel.classList.add("degreeUnits__active");
+      fah.classList.remove("degreeUnits__active");
+      const stateCopy = {...this.state};
+      this.setState({...stateCopy, isCelsiusActive: true})
+    }
+  }
+
+  activateFahrenheit = () => {
+    const degreesContainer = document.querySelector(".degreeUnits");
+    const cel = degreesContainer.firstElementChild;
+    const fah = degreesContainer.lastElementChild;
+
+    if (cel.classList.contains("degreeUnits__active")) {
+      cel.classList.remove("degreeUnits__active");
+      fah.classList.add("degreeUnits__active");
+      const stateCopy = {...this.state};
+      this.setState({...stateCopy, isCelsiusActive: false})
+    }
+    else return;
   }
 
   showMoreDays = () => {
@@ -48,17 +85,35 @@ class App extends Component {
         let card = null;
 
         if (i === 0) {
-          card = <CardCurrent key={i} myCurrent={this.props.myState.current} myLocation={this.props.myState.location} />;
+          card = (
+            <CardCurrent
+              key={i}
+              isCelsiusActive={this.state.isCelsiusActive}
+              myCurrent={this.props.myState.current}
+              myLocation={this.props.myState.location} />
+          );
           cards.push(card);
         }
         else if (i === 3 || i === 4) {
           //These are the last 2 cards, they'll be hidden by default
           //until the user presses the 'show more' button
-          card = <CardForecast key={i} myForecast={this.props.myState.forecast.forecastday[i]} myLocation={this.props.myState.location} />;
+          card = (
+            <CardForecast
+              key={i}
+              isCelsiusActive={this.state.isCelsiusActive}
+              myForecast={this.props.myState.forecast.forecastday[i]}
+              myLocation={this.props.myState.location} />
+          );
           lastCards.push(card);
         }
         else {
-          card = <CardForecast key={i} myForecast={this.props.myState.forecast.forecastday[i]} myLocation={this.props.myState.location} />;
+          card = (
+            <CardForecast
+              key={i}
+              isCelsiusActive={this.state.isCelsiusActive}
+              myForecast={this.props.myState.forecast.forecastday[i]}
+              myLocation={this.props.myState.location} />
+          );
           cards.push(card);
         }
       }
@@ -70,11 +125,19 @@ class App extends Component {
     return (
       <div className="App">
         <header className="appHeader">
-          <h2>Weather</h2>
           <form className="searchBox" onSubmit={(e) => this.searchCity(e)}>
             <input type="text" placeholder="Search your city..." />
             <span className="searchBox__icon icon-search" onClick={() => this.toggleSearchBar()}></span>
           </form>
+          <h2>Weather</h2>
+          <div className="degreeUnits">
+            <div onClick={() => this.activateCelsius()} className="degreeUnits__celsius degreeUnits__active">
+              ºC
+            </div>
+            <div onClick={() => this.activateFahrenheit()} className="degreeUnits__fahrenheit">
+              ºF
+            </div>
+          </div>
         </header>
         {cards}
         {this.state.showLastCards ? lastCards : null}
@@ -85,7 +148,7 @@ class App extends Component {
     );
   }
 }
-   
+
 const mapStateToProps = state => {
   return {
     myState: state
