@@ -21,7 +21,7 @@ class App extends Component {
     if (searchBox.classList.contains("searchBoxShow")) {
       searchBox.classList.remove("searchBoxShow");
       searchBoxInput.classList.remove("searchBoxShowInputPadding");
-    } 
+    }
     //Show the searchBox
     else {
       searchBox.classList.add("searchBoxShow");
@@ -33,8 +33,9 @@ class App extends Component {
   searchCity = e => {
     e.preventDefault();
     const search = document.querySelector(".searchBox input");
-    console.log(search.value);
     this.props.onFetchCityWeather(search.value);
+    //Quit focus from input
+    search.blur();
   }
 
   activateCelsius = () => {
@@ -69,13 +70,38 @@ class App extends Component {
     this.setState({showLastCards: true});
   }
 
+  positionHeader = () => {
+    const winWidth = window.innerWidth;
+    const app = document.querySelector(".App");
+
+    if (winWidth > 1024) {
+      app.style.setProperty('--positionX', `${app.offsetLeft + 80}px`);
+      app.style.setProperty('--positionY', `${app.offsetTop}px`);
+    } else {
+      app.style.setProperty('--positionX', '0px');
+      app.style.setProperty('--positionY', '0px');
+    }
+
+  }
+
+  checkIfDesktop = () => {
+    const winWidth = window.innerWidth;
+
+    if (winWidth > 1024) {
+      this.setState({showLastCards: true});
+    }
+  }
+
   componentDidMount() {
     this.props.onFetchWeather();
+    this.positionHeader();
+    this.checkIfDesktop();
+    window.addEventListener("resize", this.positionHeader);
   }
 
   render() {
     let cards;
-    let lastCards;
+    let lastCards
 
     if (this.props.myState.current) {
       cards = [];
@@ -96,7 +122,8 @@ class App extends Component {
         }
         else if (i === 3 || i === 4) {
           //These are the last 2 cards, they'll be hidden by default
-          //until the user presses the 'show more' button
+          //until the user presses the 'show more' button.
+          //In desktop they will appear by default
           card = (
             <CardForecast
               key={i}

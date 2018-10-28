@@ -16,3 +16,9 @@
   color: #4D4069;
   font-size: 55px;
 }
+
+@media screen and (min-width: 1025px) {
+  .showMore {
+    display: none;
+  }
+}

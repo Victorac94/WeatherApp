@@ -18,62 +18,62 @@ p {
   font-size: 13px;
 }
 
-.card__currentWeather {
-  grid-area: current-weather;
+.card__forecastWeather {
+  grid-area: forecast-weather;
   display: inline-block;
   align-self: flex-end;
   position: relative;
 }
 
-.card__currentWeather__avgTemp {
+.card__forecastWeather__avgTemp {
   display: inline-block;
   position: relative;
   font-family: 'Roboto', sans-serif;
   font-size: 26px;
 }
 
-.card__currentWeather__avgTemp span {
+.card__forecastWeather__avgTemp span {
   position: absolute;
   top: 0;
   font-size: 18px;
 }
 
-.card__currentWeather__maxMin,
-.card__currentWeather__maxMin__max,
-.card__currentWeather__maxMin__min {
+.card__forecastWeather__maxMin,
+.card__forecastWeather__maxMin__max,
+.card__forecastWeather__maxMin__min {
   display: inline-block;
 }
 
-.card__currentWeather__maxMin {
+.card__forecastWeather__maxMin {
   position: relative;
   bottom: -3px;
 }
 
-.card__currentWeather__maxMin__max,
-.card__currentWeather__maxMin__min {
+.card__forecastWeather__maxMin__max,
+.card__forecastWeather__maxMin__min {
   margin-right: 10px;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
 }
 
-.card__currentWeather__maxMin__max span:last-child,
-.card__currentWeather__maxMin__min span:last-child {
+.card__forecastWeather__maxMin__max span:last-child,
+.card__forecastWeather__maxMin__min span:last-child {
   display: block;
   font-weight: bold;
   font-size: 10px;
 }
 
-.card__currentWeather__maxMin__max span:last-child {
+.card__forecastWeather__maxMin__max span:last-child {
   color: #D1515E;
 }
 
-.card__currentWeather__maxMin__min span:last-child {
+.card__forecastWeather__maxMin__min span:last-child {
   color: #516FD1;
 }
 
 .card__weatherIcon {
-  grid-area: animated-icon;
+  grid-area: weather-icon;
   justify-self: flex-end;
   align-self: flex-start;
   position: relative;
@@ -98,6 +98,64 @@ p {
   grid-template-columns: 1.5fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "location          animated-icon"
-    "current-weather   card-day";
+    "location          weather-icon"
+    "forecast-weather   card-day";
+}
+
+/* For desktop */
+@media screen and (min-width: 1025px) {
+  .card {
+    position: relative;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1.3fr 1.3fr;
+    grid-template-areas:
+      "location"
+      "weather-icon"
+      "forecast-weather"
+  }
+  .card__location,
+  .card__forecastWeather {
+    text-align: center;
+  }
+  .card__weatherIcon {
+    justify-self: initial;
+    align-self: initial;
+  }
+  .card__weatherIcon img {
+    position: absolute;
+    height: 105%;
+    width: 85%;
+    top: -100%;
+    right: -100%;
+    bottom: -100%;
+    left: -100%;
+    margin: auto;
+  }
+  .card__forecastWeather {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+  }
+  .card__forecastWeather__maxMin {
+    left: 6px;
+  }
+  .card__forecastWeather__maxMin__max,
+  .card__forecastWeather__maxMin__min {
+    font-size: 18px;
+  }
+  .card__forecastWeather__maxMin__max span:last-child,
+  .card__forecastWeather__maxMin__min span:last-child {
+    font-size: 11px;
+  }
+  .card__day {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    font-family: 'Open sans', sans-serif;
+    font-size: 20px;
+    text-align: center;
+  }
 }

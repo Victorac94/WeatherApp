@@ -12,12 +12,13 @@ const cardCurrent = (props) => {
       </div>
       <div className={classes.card__currentWeather}>
         <p>
-          {props.isCelsiusActive ? props.myCurrent.temp_c : props.myCurrent.temp_f}<span>º</span>
+          {props.isCelsiusActive ? props.myCurrent.temp_c.toFixed(0) : props.myCurrent.temp_f.toFixed(0)}
+          <span>º</span>
         </p>
         <i className="icon-right-thin"></i>
         <span>{props.myCurrent.condition.text}</span>
       </div>
-      <div className={classes.card__animatedIcon}>
+      <div className={classes.card__weatherIcon}>
         <img src={props.myCurrent.condition.icon} alt={props.myCurrent.condition.text}/>
       </div>
       <div className={classes.card__day}>

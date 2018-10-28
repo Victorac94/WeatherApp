@@ -1,8 +1,15 @@
+:root {
+  --positionX: 0;
+  --positionY: 0;
+}
+
 .App {
   color: white;
   padding: 65px 10px 20px 10px;
   background-color: #4D4069;
   min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
 .App h2 {
@@ -15,8 +22,8 @@
 
 .appHeader {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: var(--positionY);
+  left: var(--positionX);
   padding-top: 10px;
   background-color: #4d4069;
   width: 100%;
@@ -47,6 +54,7 @@
   width: 100%;
   border: none;
   border-radius: 4px;
+  background-color: #f9f9f9;
   font-family: 'Open sans', sans-serif;
   font-size: 16px;
   transition: padding-left 0.3s ease-out;
@@ -65,6 +73,11 @@
   top: 10px;
   left: 10px;
   font-size: 23px;
+}
+
+.searchBox__icon:hover,
+.degreeUnits:hover {
+  cursor: pointer
 }
 
 .degreeUnits {
@@ -93,4 +106,24 @@
 
 .degreeUnits__active {
   background-color: #6A478B
+}
+
+/* For desktop */
+@media screen and (min-width: 1025px) {
+  .App {
+    padding: 80px;
+    width: 1000px;
+    min-height: initial;
+    height: 500px;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .appHeader {
+    width: 840px;
+  }
+  .searchBox,
+  .searchBox input {
+    max-width: 250px;
+  }
 }

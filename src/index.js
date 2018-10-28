@@ -12,7 +12,7 @@ import watchWeather from './store/sagas/index.js';
 
 // Si estamos en development mode entonces habilitamos la extension de chrome, sino usamos 'compose'
 // process.env hace referencia a las variables de entorno de React
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : null || compose;
 
 //Creamos el Saga Middleware
 const sagaMiddleware = createSagaMiddleware();

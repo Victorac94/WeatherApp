@@ -12,6 +12,5 @@ export function* fetchWeatherStart() {
 export function* fetchCityWeatherStart(data) {
   const cityURI = encodeURI(data.city);
   const response = yield axios.get('https://api.apixu.com/v1/forecast.json?key=54dac3d1c97d4b04927144355181810&q=' + cityURI + '&days=5');
-  console.log(response.data);
   yield put(fetchCityWeatherSucceed(response.data))
 }

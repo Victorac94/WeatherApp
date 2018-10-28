@@ -38,14 +38,14 @@ p {
   font-size: 18px;
 }
 
-.card__animatedIcon {
-  grid-area: animated-icon;
+.card__weatherIcon {
+  grid-area: weather-icon;
   justify-self: flex-end;
   align-self: flex-start;
   position: relative;
 }
 
-.card__animatedIcon img {
+.card__weatherIcon img {
   position: absolute;
   top: -18px;
   right: -18px;
@@ -64,6 +64,62 @@ p {
   grid-template-columns: 1.5fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "location          animated-icon"
+    "location          weather-icon"
     "current-weather   card-day";
+}
+
+/* For desktop */
+@media screen and (min-width: 1025px) {
+  .card {
+    position: relative;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1.3fr 1.2fr;
+    grid-template-areas:
+      "location"
+      "weather-icon"
+      "current-weather"
+  }
+  .card__location,
+  .card__currentWeather {
+    text-align: center;
+  }
+  .card__weatherIcon {
+    justify-self: initial;
+    align-self: initial;
+  }
+  .card__weatherIcon img {
+    position: absolute;
+    height: 105%;
+    width: 85%;
+    top: -100%;
+    right: -100%;
+    bottom: -100%;
+    left: -100%;
+    margin: auto;
+  }
+  .card__currentWeather {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .card__currentWeather span:last-child {
+    font-family: 'Open-sans', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+  .card__currentWeather p span {
+    margin-top: 0 !important;
+  }
+  .card__day {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    font-family: 'Open sans', sans-serif;
+    font-size: 20px;
+    color: #27ac34;
+    text-align: center;
+  }
 }

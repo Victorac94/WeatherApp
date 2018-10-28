@@ -32,10 +32,25 @@
   background: linear-gradient(#A376CB, #9562c3);
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 481px) and (max-width: 1024px) {
   .card {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .card {
+    width: 152px;
+    height: 250px;
+    padding: 15px;
+    margin-left: 20px;
+  }
+  .card:nth-child(2) {
+    margin-left: 0;
+  }
+  .icon-right-thin {
+    display: none;
   }
 }
