@@ -32,7 +32,7 @@
   background: linear-gradient(#A376CB, #9562c3);
 }
 
-@media screen and (min-width: 481px) and (max-width: 1024px) {
+@media screen and (min-width: 481px) and (max-width: 1079px) {
   .card {
     margin-left: auto;
     margin-right: auto;
@@ -40,12 +40,13 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1080px) {
   .card {
-    width: 152px;
+    width: 160px;
     height: 250px;
     padding: 15px;
     margin-left: 20px;
+    margin-bottom: 0;
   }
   .card:nth-child(2) {
     margin-left: 0;

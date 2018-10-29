@@ -55,6 +55,7 @@ const cardForecast = (props) => {
         <p className={classes.card__forecastWeather__avgTemp}>
           {props.isCelsiusActive ? props.myForecast.day.avgtemp_c.toFixed(0) : props.myForecast.day.avgtemp_f.toFixed(0)}
           <span>º</span>
+          {props.isCelsiusActive ? 'C' : 'F'}
         </p>
         <i className="icon-right-thin"></i>
         <div className={classes.card__forecastWeather__maxMin}>

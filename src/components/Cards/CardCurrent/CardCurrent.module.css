@@ -33,8 +33,10 @@ p {
 }
 
 .card__currentWeather p span {
-  position: absolute;
-  top: 0;
+  position: relative;
+  top: -6px;
+  left: 4px;
+  margin-right: 4px;
   font-size: 18px;
 }
 
@@ -47,8 +49,8 @@ p {
 
 .card__weatherIcon img {
   position: absolute;
-  top: -18px;
-  right: -18px;
+  top: -13px;
+  right: -11px;
   width: 92px;
 }
 
@@ -61,7 +63,7 @@ p {
 }
 
 .card {
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.9fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "location          weather-icon"
@@ -69,7 +71,7 @@ p {
 }
 
 /* For desktop */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1080px) {
   .card {
     position: relative;
     justify-content: center;
@@ -91,7 +93,7 @@ p {
   .card__weatherIcon img {
     position: absolute;
     height: 105%;
-    width: 85%;
+    width: 80%;
     top: -100%;
     right: -100%;
     bottom: -100%;

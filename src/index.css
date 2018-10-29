@@ -26,7 +26,7 @@ code {
   align-items: center;
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1080px) {
   body {
     background: linear-gradient(135deg, #D580FF, #A090E4, #9EB3CC, #9EB3CC, #A090E4, #D580FF);
   }

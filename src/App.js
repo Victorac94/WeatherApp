@@ -74,8 +74,8 @@ class App extends Component {
     const winWidth = window.innerWidth;
     const app = document.querySelector(".App");
 
-    if (winWidth > 1024) {
-      app.style.setProperty('--positionX', `${app.offsetLeft + 80}px`);
+    if (winWidth > 1079) {
+      app.style.setProperty('--positionX', `${app.offsetLeft + 90}px`);
       app.style.setProperty('--positionY', `${app.offsetTop}px`);
     } else {
       app.style.setProperty('--positionX', '0px');
@@ -87,7 +87,7 @@ class App extends Component {
   checkIfDesktop = () => {
     const winWidth = window.innerWidth;
 
-    if (winWidth > 1024) {
+    if (winWidth > 1079) {
       this.setState({showLastCards: true});
     }
   }
@@ -170,7 +170,14 @@ class App extends Component {
         {this.state.showLastCards ? lastCards : null}
         {this.props.myState.current && !this.state.showLastCards ?
           <ShowMore showMore={() => this.showMoreDays()}/>
-          : null}
+          : null
+        }
+        {this.props.myState.error ?
+          <div className="onError">
+            Couldn't load the city's weather
+          </div>
+          : null
+        }
       </div>
     );
   }

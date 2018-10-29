@@ -108,11 +108,42 @@
   background-color: #6A478B
 }
 
+.onError {
+  position: fixed;
+  top: -50px;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+  background-color: #f45045;
+  border: 1px solid #c72f25;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Open sans', sans-serif;
+  font-size: 15px;
+  padding: 0.75em 1.25em;
+  animation: animateError 5s linear;
+}
+
+@keyframes animateError {
+  0% {
+    top: -50px;
+  }
+  7% {
+    top: 55px;
+  }
+  93% {
+    top: 55px;
+  }
+  100% {
+    top: -50px;
+  }
+}
+
 /* For desktop */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1080px) {
   .App {
-    padding: 80px;
-    width: 1000px;
+    padding: 80px 90px;
+    width: 1060px;
     min-height: initial;
     height: 500px;
     border-radius: 4px;
@@ -120,10 +151,30 @@
     align-items: flex-end;
   }
   .appHeader {
-    width: 840px;
+    width: 880px;
   }
   .searchBox,
   .searchBox input {
     max-width: 250px;
+  }
+  .onError {
+    top: -50px;
+    left: 35%;
+    width: 30%;
+    animation: animateErrorDesktop 5s linear;
+  }
+  @keyframes animateErrorDesktop {
+    0% {
+      top: -50px;
+    }
+    7% {
+      top: 10px;
+    }
+    93% {
+      top: 10px;
+    }
+    100% {
+      top: -50px;
+    }
   }
 }

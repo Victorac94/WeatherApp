@@ -14,6 +14,7 @@ const cardCurrent = (props) => {
         <p>
           {props.isCelsiusActive ? props.myCurrent.temp_c.toFixed(0) : props.myCurrent.temp_f.toFixed(0)}
           <span>º</span>
+          {props.isCelsiusActive ? 'C' : 'F'}
         </p>
         <i className="icon-right-thin"></i>
         <span>{props.myCurrent.condition.text}</span>
