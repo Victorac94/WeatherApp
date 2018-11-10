@@ -70,8 +70,8 @@ p {
     "current-weather   card-day";
 }
 
-/* For desktop */
-@media screen and (min-width: 1080px) {
+/* For tablet on landscape mode and for desktop */
+@media (min-width: 768px) and (max-width: 1079px) and (orientation: landscape) , (min-width: 1080px) {
   .card {
     position: relative;
     justify-content: center;

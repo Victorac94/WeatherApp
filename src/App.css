@@ -5,7 +5,7 @@
 
 .App {
   color: white;
-  padding: 65px 10px 20px 10px;
+  padding: 65px 10px 40px 10px;
   background-color: #4D4069;
   min-height: 100vh;
   width: 100%;
@@ -139,6 +139,49 @@
   }
 }
 
+/* For tablet (landscape) */
+@media (min-width: 768px) and (max-width: 1079px) and (orientation: landscape) {
+  .App {
+    padding: 40px 45px;
+    width: 90%;
+    min-height: initial;
+    height: 410px;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .appHeader {
+    width: calc(100% - 90px);
+    position: absolute;
+    top: 0;
+    left: 45px;
+  }
+  .searchBox,
+  .searchBox input {
+    max-width: 250px;
+  }
+  .onError {
+    top: -50px;
+    left: 35%;
+    width: 30%;
+    animation: animateErrorDesktop 5s linear;
+  }
+  @keyframes animateErrorDesktop {
+    0% {
+      top: -50px;
+    }
+    7% {
+      top: 10px;
+    }
+    93% {
+      top: 10px;
+    }
+    100% {
+      top: -50px;
+    }
+  }
+}
+
 /* For desktop */
 @media screen and (min-width: 1080px) {
   .App {
@@ -152,6 +195,9 @@
   }
   .appHeader {
     width: 880px;
+    position: absolute;
+    top: 0;
+    left: 90px;
   }
   .searchBox,
   .searchBox input {

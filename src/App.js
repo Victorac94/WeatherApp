@@ -15,27 +15,47 @@ class App extends Component {
   }
 
   toggleSearchBar = () => {
-    const searchBox = document.querySelector(".searchBox");
+    const form = document.querySelector(".searchBox");
     const searchBoxInput = document.querySelector(".searchBox input");
-    //Hide the searchBox
-    if (searchBox.classList.contains("searchBoxShow")) {
-      searchBox.classList.remove("searchBoxShow");
-      searchBoxInput.classList.remove("searchBoxShowInputPadding");
-    }
+
     //Show the searchBox
-    else {
-      searchBox.classList.add("searchBoxShow");
+    if (!form.classList.contains("searchBoxShow")) {
+      form.classList.add("searchBoxShow");
       searchBoxInput.classList.add("searchBoxShowInputPadding");
       searchBoxInput.focus();
+      return;
     }
+    //Search City
+    else if (form.classList.contains("searchBoxShow") && searchBoxInput.value.trim() !== '') {
+      this.searchCity(false);
+      return;
+    }
+    //Hide the searchBox
+    else if (searchBoxInput.value === '') {
+      form.classList.remove("searchBoxShow");
+      searchBoxInput.classList.remove("searchBoxShowInputPadding");
+      return;
+    }
+    searchBoxInput.value = '';
+    return;
   }
 
   searchCity = e => {
-    e.preventDefault();
     const search = document.querySelector(".searchBox input");
-    this.props.onFetchCityWeather(search.value);
-    //Quit focus from input
-    search.blur();
+    //Remove whitespaces from left and right of the city query
+    search.value = search.value.trim();
+
+    //If user executed the search from keyboard and not from
+    // the search icon then preventDefault:
+    if (e) {
+      e.preventDefault();
+    }
+
+    if (search.value !== '') {
+      this.props.onFetchCityWeather(search.value);
+      //Quit focus from input
+      search.blur();
+    }
   }
 
   activateCelsius = () => {
@@ -70,33 +90,24 @@ class App extends Component {
     this.setState({showLastCards: true});
   }
 
-  positionHeader = () => {
+  checkIfDesktopOrLandscape = () => {
     const winWidth = window.innerWidth;
-    const app = document.querySelector(".App");
+    const winHeight = window.innerHeight;
 
-    if (winWidth > 1079) {
-      app.style.setProperty('--positionX', `${app.offsetLeft + 90}px`);
-      app.style.setProperty('--positionY', `${app.offsetTop}px`);
-    } else {
-      app.style.setProperty('--positionX', '0px');
-      app.style.setProperty('--positionY', '0px');
+    //Check if on tablet (landscape)
+    if (winWidth > winHeight && winWidth >= 768 && winWidth <= 1079) {
+      this.setState({showLastCards: true});
     }
-
-  }
-
-  checkIfDesktop = () => {
-    const winWidth = window.innerWidth;
-
-    if (winWidth > 1079) {
+    //Check if on desktop
+    else if (winWidth > 1079) {
       this.setState({showLastCards: true});
     }
   }
 
   componentDidMount() {
     this.props.onFetchWeather();
-    this.positionHeader();
-    this.checkIfDesktop();
-    window.addEventListener("resize", this.positionHeader);
+    this.checkIfDesktopOrLandscape();
+    window.addEventListener("resize", this.checkIfDesktopOrLandscape);
   }
 
   render() {
